@@ -8,18 +8,12 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    container:
+      image: node:22-bullseye  # <- guaranteed Node 22 + npm >=10.9.2
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '22.3.1'  # <- exact Node 22 version
-
-      - name: Upgrade npm
-        run: npm install -g npm@latest  # ensures npm >= 10.9.2
 
       - name: Install dependencies
         run: npm install
