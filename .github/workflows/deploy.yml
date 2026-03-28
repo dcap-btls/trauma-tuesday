@@ -8,7 +8,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -17,6 +16,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '22'
+
+      - name: Upgrade npm
+        run: npm install -g npm@latest  # <- this ensures npm ≥ 10.9.2
 
       - name: Install dependencies
         run: npm install
